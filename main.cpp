@@ -6,6 +6,7 @@
 
 #include "base_structs.h"
 #include "simple_tree_fractal/simple_tree.h"
+#include "h_fractal/h_fractal.h"
 
 int main(){
     //toml parsing for parameters
@@ -35,6 +36,9 @@ int main(){
     switch (fractal_type){
         case 0:
             draw_lines = tree::simulate(iterations, scaling, window.getSize().y);
+            break;
+        case 1:
+            draw_lines = hfrac::simulate(iterations, scaling, window.getSize().y);
             break;
     }
 
@@ -92,7 +96,7 @@ int main(){
         window.setView(view);
 
         //drawing
-        for (const Line line : draw_lines) {
+        for (const Line& line : draw_lines) {
             std::array line_points = {
                 sf::Vertex{line.start},
                 sf::Vertex{line.end}};
