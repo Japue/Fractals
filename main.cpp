@@ -7,7 +7,7 @@
 
 int main(){
     //window setup
-    sf::RenderWindow window(sf::VideoMode({800, 600}), "Tree Fractal");
+    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Tree Fractal");
     sf::View view = window.getDefaultView();
     view.setCenter({0, 0});
 
