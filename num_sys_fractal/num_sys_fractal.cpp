@@ -14,7 +14,7 @@ std::vector<Line> num_sys::iterate(const std::vector<Line>& start_lines, std::ve
     for (const Line& line : start_lines) {
         Line new_straight(
             line.end,
-            line.end + sf::Vector2f{line.length * scaling, 0.f},
+            line.end - sf::Vector2f{0.f, line.length * scaling},
             line.length * scaling
         );
 
@@ -23,11 +23,11 @@ std::vector<Line> num_sys::iterate(const std::vector<Line>& start_lines, std::ve
 
         for (int i = 1; i < num_sys; i++) {
             float angle = 2.f * PI * i / num_sys;
-            sf::Vector2f new_straight_end = new_straight.end;
+            sf::Vector2f offset = new_straight.end - new_straight.start;
             Line new_line(
                 new_straight.start,
-                {new_straight_end.x * std::cos(angle) - new_straight_end.y * std::sin(angle),
-                 new_straight_end.x * std::sin(angle) + new_straight_end.y * std::cos(angle)},
+                {offset.x * std::cos(angle) - offset.y * std::sin(angle) + new_straight.start.x,
+                 offset.x * std::sin(angle) + offset.y * std::cos(angle) + new_straight.start.y},
                 new_straight.length);
             
             new_lines.push_back(new_line);
@@ -41,7 +41,7 @@ std::vector<Line> num_sys::iterate(const std::vector<Line>& start_lines, std::ve
 std::vector<Line> num_sys::simulate(int iterations, float scaling, int num_sys, int window_height) {
     Line straight(
             {0.f, 0.f},
-            sf::Vector2f{window_height * 0.5f, 0.f},
+            sf::Vector2f{0.f, window_height * -0.5f},
             window_height * 0.5f
     );
 
