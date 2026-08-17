@@ -6,7 +6,7 @@
 #include <vector>
 #include <cmath>
 
-const double PI = M_PI;
+const float PI = static_cast<float>(M_PI);
 
 std::vector<Line> num_sys::iterate(const std::vector<Line>& start_lines, std::vector<Line>& all_lines, float scaling, int num_sys) {
     std::vector<Line> new_lines = {};
@@ -22,7 +22,7 @@ std::vector<Line> num_sys::iterate(const std::vector<Line>& start_lines, std::ve
         all_lines.push_back(new_straight);
 
         for (int i = 1; i < num_sys; i++) {
-            float angle = 2 * PI * i / num_sys;
+            float angle = 2.f * PI * i / num_sys;
             sf::Vector2f new_straight_end = new_straight.end;
             Line new_line(
                 new_straight.start,
