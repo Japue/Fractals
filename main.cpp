@@ -7,18 +7,24 @@
 #include "base_structs.h"
 #include "simple_tree_fractal/simple_tree.h"
 #include "h_fractal/h_fractal.h"
+#include "num_sys_fractal/num_sys_fractal.h"
 
 int main(){
-    //toml parsing for parameters
+    //general_params
     int fractal_type = 0;
     int iterations = 4;
     float scaling = 0.5;
 
+    //num_sys_params
+    int num_sys = 3;
+
+    //toml parsing for parameters
     try {
         toml::table tbl = toml::parse_file("config.toml");
         fractal_type = tbl["general_params"]["fractal_type"].value_or(fractal_type);
         iterations = tbl["general_params"]["iterations"].value_or(iterations);
         scaling = static_cast<float>(tbl["general_params"]["scaling"].value_or(scaling));
+        num_sys = tbl["num_sys_params"]["num_sys"].value_or(num_sys);
     } catch (const toml::parse_error& err) {
         std::cerr << "Parsing failed:\n" << err << "\n";
     }
@@ -39,6 +45,9 @@ int main(){
             break;
         case 1:
             draw_lines = hfrac::simulate(iterations, scaling, window.getSize().y);
+            break;
+        case 2:
+            draw_lines = num_sys::simulate(iterations, scaling, num_sys, window.getSize().y);
             break;
     }
 
