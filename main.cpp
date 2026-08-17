@@ -7,6 +7,7 @@
 #include "base_structs.h"
 #include "simple_tree_fractal/simple_tree.h"
 #include "h_fractal/h_fractal.h"
+#include "num_sys_fractal/num_sys_fractal.h"
 
 int main(){
     //toml parsing for parameters
