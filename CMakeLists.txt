@@ -29,20 +29,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(tomlplusplus)
  
-add_executable(${TARGET} main.cpp tree-fractal/tree.cpp)
+add_executable(${TARGET} main.cpp simple_tree_fractal/simple_tree.cpp)
  
 target_link_libraries(${TARGET} PRIVATE sfml-graphics sfml-window sfml-system tomlplusplus::tomlplusplus)
- 
-# On Windows, SFML builds as DLLs — copy them next to the executable after building
-# so it can actually find them at runtime. This is a no-op on Linux/macOS.
-if (WIN32)
-    add_custom_command(TARGET ${TARGET} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_RUNTIME_DLLS:${TARGET}>
-            $<TARGET_FILE_DIR:${TARGET}>
-        COMMAND_EXPAND_LISTS
-    )
-endif()
  
 add_custom_command(TARGET ${TARGET} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different

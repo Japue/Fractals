@@ -14,6 +14,9 @@ int main(){
     bool is_dragging = false;
     sf::Vector2i last_mouse_pos = sf::Mouse::getPosition(window);
 
+    //fractal generation
+    std::vector<Line> draw_lines = simulate(4, 0.5, 800);
+
     //gameloop
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
@@ -68,9 +71,16 @@ int main(){
         window.setView(view);
 
         //drawing
+        for (const Line line : draw_lines) {
+            std::array line_points = {
+                sf::Vertex{line.start},
+                sf::Vertex{line.end}};
 
+            window.draw(line_points.data(), line_points.size(),
+                        sf::PrimitiveType::Lines);
+        }
         //
 
-        window.display();
+            window.display();
     }
 }

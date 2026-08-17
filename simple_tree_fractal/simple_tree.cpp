@@ -26,9 +26,8 @@ std::vector<Line> iterate(const std::vector<Line>& begin_lines, std::vector<Line
             new_length);
         next_lines.push_back(r_line);
         all_lines.push_back(r_line);
-
-        return next_lines;
     }
+    return next_lines;
 }
 
 std::vector<Line> simulate(int iterations, float scaling, float window_height) {
