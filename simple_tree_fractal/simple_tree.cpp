@@ -1,7 +1,7 @@
 #include "simple_tree.h"
 #include "../base_structs.h"
 
-std::vector<Line> iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines, float scaling) {
+std::vector<Line> tree::iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines, float scaling) {
     std::vector<Line> next_lines = {};
 
     for (const Line line : begin_lines) {
@@ -30,7 +30,7 @@ std::vector<Line> iterate(const std::vector<Line>& begin_lines, std::vector<Line
     return next_lines;
 }
 
-std::vector<Line> simulate(int iterations, float scaling, int window_height) {
+std::vector<Line> tree::simulate(int iterations, float scaling, int window_height) {
     std::vector<Line> all_lines = {
         Line({0.f, window_height / 2.f}, {0.f, 0.f}, window_height / 2.f)};
     std::vector<Line> start_lines = all_lines;

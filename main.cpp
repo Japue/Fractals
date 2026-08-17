@@ -30,8 +30,13 @@ int main(){
     bool is_dragging = false;
     sf::Vector2i last_mouse_pos = sf::Mouse::getPosition(window);
 
-    //fractal generation
-    std::vector<Line> draw_lines = simulate(iterations, scaling, window.getSize().y);
+    //fractal selection and generation
+    std::vector<Line> draw_lines;
+    switch (fractal_type){
+        case 0:
+            draw_lines = tree::simulate(iterations, scaling, window.getSize().y);
+            break;
+    }
 
     //gameloop
     while (window.isOpen()) {
