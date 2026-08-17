@@ -1,11 +1,27 @@
 #include <vector>
+#include <iostream>
 
 #include <SFML/Graphics.hpp>
+#include <toml++/toml.hpp>
 
 #include "base_structs.h"
 #include "simple_tree_fractal/simple_tree.h"
 
 int main(){
+    //toml parsing for parameters
+    int fractal_type = 0;
+    int iterations = 4;
+    float scaling = 0.5;
+
+    try {
+        toml::table tbl = toml::parse_file("config.toml");
+        fractal_type = tbl["general_params"]["fractal_type"].value_or(fractal_type);
+        iterations = tbl["general_params"]["iterations"].value_or(iterations);
+        scaling = static_cast<float>(tbl["general_params"]["scaling"].value_or(scaling));
+    } catch (const toml::parse_error& err) {
+        std::cerr << "Parsing failed:\n" << err << "\n";
+    }
+
     //window setup
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Tree Fractal");
     sf::View view = window.getDefaultView();
@@ -15,7 +31,7 @@ int main(){
     sf::Vector2i last_mouse_pos = sf::Mouse::getPosition(window);
 
     //fractal generation
-    std::vector<Line> draw_lines = simulate(4, 0.5, 800);
+    std::vector<Line> draw_lines = simulate(iterations, scaling, window.getSize().y);
 
     //gameloop
     while (window.isOpen()) {

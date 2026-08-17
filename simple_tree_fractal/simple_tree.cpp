@@ -30,9 +30,9 @@ std::vector<Line> iterate(const std::vector<Line>& begin_lines, std::vector<Line
     return next_lines;
 }
 
-std::vector<Line> simulate(int iterations, float scaling, float window_height) {
+std::vector<Line> simulate(int iterations, float scaling, int window_height) {
     std::vector<Line> all_lines = {
-        Line({0.f, window_height / 2}, {0.f, 0.f}, window_height / 2)};
+        Line({0.f, window_height / 2.f}, {0.f, 0.f}, window_height / 2.f)};
     std::vector<Line> start_lines = all_lines;
 
     for (int i = 0; i < iterations; i++) {

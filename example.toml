@@ -1,0 +1,4 @@
+[general_params]
+fractal_type = 0
+iterations = 4
+scaling = 0.5
