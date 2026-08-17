@@ -29,7 +29,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(tomlplusplus)
  
-add_executable(${TARGET} main.cpp)
+add_executable(${TARGET} main.cpp tree-fractal/tree.cpp)
  
 target_link_libraries(${TARGET} PRIVATE sfml-graphics sfml-window sfml-system tomlplusplus::tomlplusplus)
  

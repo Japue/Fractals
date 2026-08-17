@@ -1,4 +1,9 @@
+#include <vector>
+
 #include <SFML/Graphics.hpp>
+
+#include "base_structs.h"
+#include "simple_tree_fractal/simple_tree.h"
 
 int main(){
     //window setup
