@@ -2,3 +2,6 @@
 fractal_type = 0
 iterations = 4
 scaling = 0.5
+
+[num_sys_params]
+num_sys = 3
