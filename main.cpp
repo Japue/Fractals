@@ -8,6 +8,7 @@
 #include "simple_tree_fractal/simple_tree.h"
 #include "h_fractal/h_fractal.h"
 #include "num_sys_fractal/num_sys_fractal.h"
+#include "koch_fractal/koch_fractal.h"
 
 int main(){
     //general_params
@@ -48,6 +49,9 @@ int main(){
             break;
         case 2:
             draw_lines = num_sys::simulate(iterations, scaling, num_sys, window.getSize().y);
+            break;
+        case 3:
+            draw_lines = koch::simulate(iterations, scaling, window.getSize().y);
             break;
     }
 
