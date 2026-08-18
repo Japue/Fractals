@@ -16,7 +16,7 @@ struct Line{
         return Line(start + offset, end + offset, length);
     }
 
-    sf::Vector2f point_on_line_from_start(float distance) {
+    sf::Vector2f point_on_line_from_start(float distance) const {
         //calculate the formula of the line: y = ax + b
         // b = y1 - ax1  -->  y2 = ax2 + y1 - ax1  -->  a = (y2 - y1) / (x2 - x1)
         float a = (end.y - start.y) / (end.x - start.x);
@@ -46,6 +46,5 @@ struct Line{
 
         x = (-1 * disc_b - std::sqrt(disc)) / (2 * disc_a);
         return {x, a * x + b};
-        
     }
 };
