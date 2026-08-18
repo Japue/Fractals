@@ -4,6 +4,8 @@
 
 #include <cmath>
 
+const float PI = static_cast<float>(M_PI);
+
 struct Line{
     sf::Vector2f start;
     sf::Vector2f end;
@@ -33,11 +35,11 @@ struct Line{
         float d = start.y;
         float e = b - d;
 
-        float disc_a = 1 + std::pow(a, 2);
+        float disc_a = 1 + std::pow(a, 2.f);
         float disc_b = 2 * a * e - 2 * c;
-        float disc_c = std::pow(c, 2) + std::pow(e, 2) - std::pow(distance, 2);
+        float disc_c = std::pow(c, 2.f) + std::pow(e, 2.f) - std::pow(distance, 2.f);
 
-        float disc =  std::pow(disc_c, 2) - 4 * disc_a * disc_c;
+        float disc =  std::pow(disc_c, 2.f) - 4 * disc_a * disc_c;
 
         float x = (-1 * disc_b + std::sqrt(disc)) / (2 * disc_a);
         if ((x > start.x && x < end.x) || (x < start.x && x > end.x)) {
@@ -48,3 +50,20 @@ struct Line{
         return {x, a * x + b};
     }
 };
+
+inline sf::Vector2f rotate_point_around_anchorpoint(sf::Vector2f target, const sf::Vector2f& anchor, float angle_deg) {
+    //translate anchor to origin, do the same translation on target so that the rotation happens around the origin
+    target -= sf::Vector2f{anchor.x, anchor.y};
+
+    //rotate around origin with rotation matrix
+    float angle_rad = angle_deg * 2 * PI / 360;
+    float prev_x = target.x;
+    float prev_y = target.y;
+    target.x = prev_x * std::cos(angle_rad) - prev_y * std::sin(angle_rad);
+    target.y = prev_y * std::cos(angle_rad) + prev_x * std::sin(angle_rad);
+
+    //translate back
+    target += sf::Vector2f{anchor.x, anchor.y};
+
+    return target;
+}

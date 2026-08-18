@@ -29,13 +29,14 @@ std::vector<Line> iterate(const std::vector<Line>& prev_lines, float scaling) {
         Line left_diag(
             l_breakpoint,
             middle + sf::Vector2f(0.f, left_str.length * scaling),
-            std::sqrt(std::pow(left_str.length * scaling, 2) + std::pow(line.length / 6, 2))
+            std::sqrt(std::pow(left_str.length * scaling, 2.f) + std::pow(line.length / 6, 2.f))
         );
 
         Line right_diag(
             middle + sf::Vector2f(0.f, left_str.length * scaling),
             r_breakpoint,
-            std::sqrt(std::pow(left_str.length * scaling, 2) + std::pow(line.length / 6, 2))
+            std::sqrt(std::pow(left_str.length * scaling, 2.f) + std::pow(line.length / 6, 2.f))
         );
     }
+    return next_lines;
 }

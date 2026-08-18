@@ -34,6 +34,8 @@ simple_tree_fractal/simple_tree.cpp
 h_fractal/h_fractal.cpp
 num_sys_fractal/num_sys_fractal.cpp
 koch_fractal/koch_fractal.cpp)
+
+target_compile_definitions(${TARGET} PRIVATE _USE_MATH_DEFINES)
  
 target_link_libraries(${TARGET} PRIVATE sfml-graphics sfml-window sfml-system tomlplusplus::tomlplusplus)
  
