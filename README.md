@@ -10,3 +10,4 @@ Listed here are the codes for each fractal, put this number in fractal_type in t
 Simple Tree Fractal = 0
 H Fractal = 1
 Numeral System Fractal = 2
+Koch Fractal = 3

@@ -1,12 +1,9 @@
-#define _USE_MATH_DEFINES
 #include "num_sys_fractal.h"
 #include "../base_structs.h"
 
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <cmath>
-
-const float PI = static_cast<float>(M_PI);
 
 std::vector<Line> num_sys::iterate(const std::vector<Line>& start_lines, std::vector<Line>& all_lines, float scaling, int num_sys) {
     std::vector<Line> new_lines = {};
@@ -22,12 +19,10 @@ std::vector<Line> num_sys::iterate(const std::vector<Line>& start_lines, std::ve
         all_lines.push_back(new_straight);
 
         for (int i = 1; i < num_sys; i++) {
-            float angle = 2.f * PI * i / num_sys;
-            sf::Vector2f offset = new_straight.end - new_straight.start;
+            float angle = 360.f * i / num_sys;
             Line new_line(
                 new_straight.start,
-                {offset.x * std::cos(angle) - offset.y * std::sin(angle) + new_straight.start.x,
-                 offset.x * std::sin(angle) + offset.y * std::cos(angle) + new_straight.start.y},
+                rotate_point_around_anchorpoint(new_straight.end, new_straight.start, angle),
                 new_straight.length);
             
             new_lines.push_back(new_line);
@@ -50,12 +45,10 @@ std::vector<Line> num_sys::simulate(int iterations, float scaling, int num_sys, 
 
 
     for (int i = 1; i < num_sys; i++) {
-            float angle = 2 * PI * i / num_sys;
-            sf::Vector2f straight_end = straight.end;
+            float angle = 360.f * i / num_sys;
             Line new_line(
                 straight.start,
-                {straight_end.x * std::cos(angle) - straight_end.y * std::sin(angle),
-                 straight_end.x * std::sin(angle) + straight_end.y * std::cos(angle)},
+                rotate_point_around_anchorpoint(straight.end, straight.start, angle),
                 straight.length);
             all_lines.push_back(new_line);
     }
