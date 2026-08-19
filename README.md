@@ -11,10 +11,18 @@ fractal_type accepts:
     "simple tree" 
     "h fractal"
     "numeral system"
-    "koch
+    "koch"
 
 premade_preset accepts:
     "custom" (takes the argument in initial lines)
     "one line"
     "two lines"
     "triangle"
+    "sideways triangle"
+    "reverse triangle"
+    "square"
+    "reverse square"
+    "rhombus"
+    "hexagon"
+    "octagon"
+    "none"
