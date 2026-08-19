@@ -1,12 +1,13 @@
-[general_params]
-fractal_type = 0
-iterations = 4
+#general params
+fractal_type = "simple tree"
+iterations = 2
 scaling = 0.5
 
-[num_sys_params]
+#num_sys params
 num_sys = 3
 
+#line-based params
+premade_preset = "one line"
 initial_lines = [
     [[-150, 0], [150, 0]],
-    [[150, 0], [-150, 0]]
 ]
