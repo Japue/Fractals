@@ -28,7 +28,7 @@ int main(){
         iterations = tbl["general_params"]["iterations"].value_or(iterations);
         scaling = static_cast<float>(tbl["general_params"]["scaling"].value_or(scaling));
         num_sys = tbl["num_sys_params"]["num_sys"].value_or(num_sys);
-        toml::array* initial_lines = tbl["koch_paramsf"]["initial_lines"].as_array();
+        toml::array* initial_lines = tbl["koch_params"]["initial_lines"].as_array();
         if (initial_lines) {
             for (auto&& line_node : *initial_lines) {
                 toml::array* line_arr = line_node.as_array();
