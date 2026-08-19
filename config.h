@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <iostream>
 #include <string>
@@ -8,8 +10,8 @@
 #include "base_structs.h"
 
 enum class FractalType {
-    tree,
-    h,
+    simple_tree,
+    hfrac,
     num_sys,
     koch,
     none
@@ -17,10 +19,10 @@ enum class FractalType {
 
 FractalType fractal_type_conv(std::string_view str) {
     if (str == "simple tree") {
-        return FractalType::tree;
+        return FractalType::simple_tree;
     } else if (str == "h fractal") {
-        return FractalType::h;
-    } else if (str == "num sys") {
+        return FractalType::hfrac;
+    } else if (str == "numeral system") {
         return FractalType::num_sys;
     } else if (str == "koch") {
         return FractalType::koch;
@@ -48,8 +50,11 @@ InitialLines initial_line_conv(std::string_view str) {
 
 
 struct Config {
+    //constants
+    int window_height = 1080;
+
     //general params
-    FractalType fractal_type = FractalType::tree;
+    FractalType fractal_type = FractalType::simple_tree;
     int iterations = 2;
     float scaling = 0.5f;
 
@@ -61,9 +66,12 @@ struct Config {
     std::vector<Line> initial_line_vector = {};
 
 
-    Config(std::string toml_file_name, int window_height) {
+    Config(std::string_view toml_file_name, sf::Window window) {
         try {
             toml::table tbl = toml::parse_file(toml_file_name);
+            
+            //constants
+            window_height = window.getSize().y;
 
             //general params
             fractal_type = fractal_type_conv(tbl["fractal_type"].value_or("tree"));
