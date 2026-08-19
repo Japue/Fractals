@@ -55,8 +55,8 @@ std::vector<Line> koch::iterate(const std::vector<Line>& prev_lines, float scali
     return next_lines;
 }
 
-std::vector<Line> koch::simulate(int iterations, float scaling, int window_height) {
-    std::vector<Line> lines = {Line({-0.5f * window_height, 0.f}, {0.5f * window_height, 0.f}, 1.f * window_height)};
+std::vector<Line> koch::simulate(int iterations, float scaling, std::vector<Line> initial_lines, int window_height) {
+    std::vector<Line> lines = initial_lines;
 
     for (int i = 0; i < iterations; i++) {
         lines = koch::iterate(lines, scaling);

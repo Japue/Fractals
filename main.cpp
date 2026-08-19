@@ -19,6 +19,8 @@ int main(){
     //num_sys_params
     int num_sys = 3;
 
+    std::vector<Line> initial_line_vector = {};
+
     //toml parsing for parameters
     try {
         toml::table tbl = toml::parse_file("config.toml");
@@ -26,6 +28,28 @@ int main(){
         iterations = tbl["general_params"]["iterations"].value_or(iterations);
         scaling = static_cast<float>(tbl["general_params"]["scaling"].value_or(scaling));
         num_sys = tbl["num_sys_params"]["num_sys"].value_or(num_sys);
+        toml::array* initial_lines = tbl["koch_paramsf"]["initial_lines"].as_array();
+        if (initial_lines) {
+            for (auto&& line_node : *initial_lines) {
+                toml::array* line_arr = line_node.as_array();
+                if (!line_arr || line_arr->size() != 2) continue; // skip malformed entries
+
+                toml::array* start_arr = (*line_arr)[0].as_array();
+                toml::array* end_arr = (*line_arr)[1].as_array();
+                if (!start_arr || !end_arr) continue;
+
+                float start_x = start_arr->get(0)->value_or(0.0f);
+                float start_y = start_arr->get(1)->value_or(0.0f);
+                float end_x = end_arr->get(0)->value_or(0.0f);
+                float end_y = end_arr->get(1)->value_or(0.0f);
+
+                sf::Vector2f start{start_x, start_y};
+                sf::Vector2f end{end_x, end_y};
+                float length = std::sqrt(std::pow(end_x - start_x, 2.f) + std::pow(end_y - start_y, 2.f));
+
+                initial_line_vector.push_back(Line(start, end, length));
+            }
+        }
     } catch (const toml::parse_error& err) {
         std::cerr << "Parsing failed:\n" << err << "\n";
     }
@@ -51,7 +75,7 @@ int main(){
             draw_lines = num_sys::simulate(iterations, scaling, num_sys, window.getSize().y);
             break;
         case 3:
-            draw_lines = koch::simulate(iterations, scaling, window.getSize().y);
+            draw_lines = koch::simulate(iterations, scaling, initial_line_vector, window.getSize().y);
             break;
     }
 
