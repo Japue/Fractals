@@ -1,4 +1,6 @@
 #include "h_fractal.h"
+#include "../base_structs.h"
+#include "../config.h"
 
 std::vector<H> hfrac::iterate(const std::vector<H>& begin_h, std::vector<H>& all_h, float scaling) {
     std::vector<H> next_h = {};
@@ -49,7 +51,8 @@ std::vector<H> hfrac::iterate(const std::vector<H>& begin_h, std::vector<H>& all
     return next_h;
 }
 
-std::vector<Line> hfrac::simulate(int iterations, float scaling, int window_height) {
+std::vector<Line> hfrac::simulate(const Config& config) {
+    int window_height = config.window_height;
     Line start_hor_line({-0.5f * window_height, 0.f}, {0.5f * window_height, 0.f}, 1.f * window_height);
     std::vector<H> all_h = {H(
         start_hor_line,
@@ -65,8 +68,8 @@ std::vector<Line> hfrac::simulate(int iterations, float scaling, int window_heig
 
     std::vector<H> start_h = all_h;
 
-    for (int i = 0; i < iterations; i++) {
-        start_h = iterate(start_h, all_h, scaling);
+    for (int i = 0; i < config.iterations; i++) {
+        start_h = iterate(start_h, all_h, config.scaling);
     }
     
     std::vector<Line> all_lines = {};

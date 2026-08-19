@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "../base_structs.h"
+#include "../config.h"
 
 struct H{
     Line hori;
@@ -15,5 +16,5 @@ struct H{
 namespace hfrac
 {
 std::vector<H> iterate(const std::vector<H> &begin_h, std::vector<H> &all_h, float scaling);
-std::vector<Line> simulate(int iterations, float scaling, int window_height);
+std::vector<Line> simulate(const Config& config);
 }

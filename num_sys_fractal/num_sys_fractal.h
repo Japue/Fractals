@@ -4,8 +4,9 @@
 #include <vector>
 
 #include "../base_structs.h"
+#include "../config.h"
 
 namespace num_sys {
     std::vector<Line> iterate(const std::vector<Line>& start_lines, std::vector<Line>& all_lines, float scaling, int num_sys);
-    std::vector<Line> simulate(int iterations, float scaling, int num_sys, int window_height);
+    std::vector<Line> simulate(const Config& config);
 }

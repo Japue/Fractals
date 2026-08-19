@@ -66,7 +66,7 @@ struct Config {
     std::vector<Line> initial_line_vector = {};
 
 
-    Config(std::string_view toml_file_name, sf::Window window) {
+    Config(std::string toml_file_name, sf::Window& window) {
         try {
             toml::table tbl = toml::parse_file(toml_file_name);
             

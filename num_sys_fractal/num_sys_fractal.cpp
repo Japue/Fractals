@@ -1,5 +1,6 @@
 #include "num_sys_fractal.h"
 #include "../base_structs.h"
+#include "../config.h"
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -33,19 +34,19 @@ std::vector<Line> num_sys::iterate(const std::vector<Line>& start_lines, std::ve
     return new_lines;
 }
 
-std::vector<Line> num_sys::simulate(int iterations, float scaling, int num_sys, int window_height) {
+std::vector<Line> num_sys::simulate(const Config& config) {
     Line straight(
             {0.f, 0.f},
-            sf::Vector2f{0.f, window_height * -0.5f},
-            window_height * 0.5f
+            sf::Vector2f{0.f, config.window_height * -0.5f},
+            config.window_height * 0.5f
     );
 
     std::vector<Line> all_lines = {straight};
     sf::Vector2f straight_end = straight.end;
 
 
-    for (int i = 1; i < num_sys; i++) {
-            float angle = 360.f * i / num_sys;
+    for (int i = 1; i < config.num_sys; i++) {
+            float angle = 360.f * i / config.num_sys;
             Line new_line(
                 straight.start,
                 rotate_point_around_anchorpoint(straight.end, straight.start, angle),
@@ -55,8 +56,8 @@ std::vector<Line> num_sys::simulate(int iterations, float scaling, int num_sys, 
 
     std::vector<Line> start_lines = all_lines;
 
-    for (int i = 0; i < iterations; i++) {
-        start_lines = num_sys::iterate(start_lines, all_lines, scaling, num_sys);
+    for (int i = 0; i < config.iterations; i++) {
+        start_lines = num_sys::iterate(start_lines, all_lines, config.scaling, config.num_sys);
     }
 
     return all_lines;

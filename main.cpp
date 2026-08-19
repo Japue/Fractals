@@ -9,7 +9,7 @@
 #include "simple_tree_fractal/simple_tree.h"
 #include "h_fractal/h_fractal.h"
 #include "num_sys_fractal/num_sys_fractal.h"
-#include "koch_fractal/koch_fractal.h"
+#include "line_based_fractals/koch_fractal.h"
 
 int main(){
     //window setup
@@ -21,8 +21,9 @@ int main(){
     sf::Vector2i last_mouse_pos = sf::Mouse::getPosition(window);
 
     //config and fractal generation accordingly
-    Config config("config.toml", window.getSize().y);
+    const Config config("config.toml", window);
     std::vector<Line> draw_lines;
+    
     switch (config.fractal_type){
         case FractalType::simple_tree:
             draw_lines = simple_tree::simulate(config);

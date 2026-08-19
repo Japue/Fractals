@@ -33,7 +33,7 @@ add_executable(${TARGET} main.cpp
 simple_tree_fractal/simple_tree.cpp 
 h_fractal/h_fractal.cpp
 num_sys_fractal/num_sys_fractal.cpp
-koch_fractal/koch_fractal.cpp)
+line_based_fractals/koch_fractal.cpp)
 
 target_compile_definitions(${TARGET} PRIVATE _USE_MATH_DEFINES)
  

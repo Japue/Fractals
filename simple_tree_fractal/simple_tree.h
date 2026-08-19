@@ -2,9 +2,10 @@
 
 #include <vector>
 #include "../base_structs.h"
+#include "../config.h"
 
-namespace tree
+namespace simple_tree
 {
     std::vector<Line> iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines, float scaling);
-    std::vector<Line> simulate(int iterations, float scaling, int window_height);
+    std::vector<Line> simulate(const Config& config);
 }

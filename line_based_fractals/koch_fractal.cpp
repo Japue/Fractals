@@ -1,6 +1,7 @@
 #include "koch_fractal.h"
 
 #include "../base_structs.h"
+#include "../config.h"
 #include <SFML/Graphics.hpp>
 
 #include <vector>
@@ -55,11 +56,11 @@ std::vector<Line> koch::iterate(const std::vector<Line>& prev_lines, float scali
     return next_lines;
 }
 
-std::vector<Line> koch::simulate(int iterations, float scaling, std::vector<Line> initial_lines, int window_height) {
-    std::vector<Line> lines = initial_lines;
+std::vector<Line> koch::simulate(const Config& config) {
+    std::vector<Line> lines = config.initial_line_vector;
 
-    for (int i = 0; i < iterations; i++) {
-        lines = koch::iterate(lines, scaling);
+    for (int i = 0; i < config.iterations; i++) {
+        lines = koch::iterate(lines, config.scaling);
     }
 
     return lines;

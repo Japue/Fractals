@@ -1,7 +1,8 @@
 #include "simple_tree.h"
 #include "../base_structs.h"
+#include "../config.h"
 
-std::vector<Line> tree::iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines, float scaling) {
+std::vector<Line> simple_tree::iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines, float scaling) {
     std::vector<Line> next_lines = {};
 
     for (const Line line : begin_lines) {
@@ -30,13 +31,13 @@ std::vector<Line> tree::iterate(const std::vector<Line>& begin_lines, std::vecto
     return next_lines;
 }
 
-std::vector<Line> tree::simulate(int iterations, float scaling, int window_height) {
+std::vector<Line> simple_tree::simulate(const Config& config) {
     std::vector<Line> all_lines = {
-        Line({0.f, window_height / 2.f}, {0.f, 0.f}, window_height / 2.f)};
+        Line({0.f, config.window_height / 2.f}, {0.f, 0.f}, config.window_height / 2.f)};
     std::vector<Line> start_lines = all_lines;
 
-    for (int i = 0; i < iterations; i++) {
-        start_lines = iterate(start_lines, all_lines, scaling);
+    for (int i = 0; i < config.iterations; i++) {
+        start_lines = iterate(start_lines, all_lines, config.scaling);
     }
 
     return all_lines;
