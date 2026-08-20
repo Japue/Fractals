@@ -33,28 +33,25 @@ These are some basic fractal patterns, nothing too special.
 
 This makes a tree that splits into two new ones every iteration, it represents the binary number system. It perfectly never touches the top of the screen.
 
-fractal_type = "simple tree"
-
-other parameters: none
+-fractal_type = "simple tree"
+-other parameters: none
 
 ### H Fractal
 
 This starts with a shape like this |-|, then on every boundary point of the verticals it puts a new shape of the same shape but scaled down/up by **scaling**. 
 
-fractal_type = "h fractal"
-
-other parameters: 
-- **scaling**: lower than 1 makes it smaller, bigger than 1 makes every iteration bigger
+-fractal_type = "h fractal"
+-other parameters: 
+    - **scaling**: lower than 1 makes it smaller, bigger than 1 makes every iteration bigger
 
 ### Numeral System Fractal
 
 This makes a fractal based on the number system input. Starts with a line pointing up then makes the first iteration according to **num_sys**, 3 means you will have a line at every 120°. Then every iteration it puts this shape at every endpoint of every line but scaled down by **scaling**. The number system represents counting in a different number system than the normal decimal one.
 
-fractal_type = "numeral system"
-
-other parameters:
-- **scaling**: lower than 1 makes it smaller, bigger than 1 makes every iteration bigger
-- **num_sys**: gives the amount of lines in the first iteration, this should be bigger than 3
+-fractal_type = "numeral system"
+-other parameters:
+    - **scaling**: lower than 1 makes it smaller, bigger than 1 makes every iteration bigger
+    - **num_sys**: gives the amount of lines in the first iteration, this should be bigger than 3
 
 ---
 
@@ -97,8 +94,7 @@ These have a triangle as model, the width and height of the triangle will be dec
 
 ![picture of model](img/koch.png)
 
-fractal_type = "koch"
-
-other parameters:
-- **line_model_width**
-- **line_model_height**
+-fractal_type = "koch"
+-other parameters:
+    - **line_model_width**
+    - **line_model_height**
