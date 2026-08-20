@@ -6,6 +6,6 @@
 
 namespace simple_tree
 {
-    std::vector<Line> iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines, float scaling);
+    std::vector<Line> iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines);
     std::vector<Line> simulate(const Config& config);
 }

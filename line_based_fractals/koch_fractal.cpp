@@ -7,20 +7,21 @@
 #include <vector>
 
 
-std::vector<Line> koch::iterate(const std::vector<Line>& prev_lines, float scaling) {
+std::vector<Line> koch::iterate(const std::vector<Line>& prev_lines, float width_factor, float height_factor) {
     std::vector<Line> next_lines = {};
 
     for (const Line& line : prev_lines) {
-        sf::Vector2f l_breakpoint = line.point_on_line_from_start(line.length / 3);
-        sf::Vector2f r_breakpoint = line.point_on_line_from_start(2 * line.length / 3);
+        float new_width = line.length * width_factor;
+        float new_height = line.length * height_factor;
+        sf::Vector2f l_breakpoint = line.point_on_line_from_start(line.length - new_width);
+        sf::Vector2f r_breakpoint = line.point_on_line_from_start(new_width);
 
-        float new_line_length = line.length / 3;
         float angle_rad = std::atan2(line.end.y - line.start.y, line.end.x - line.start.x);
         float angle_deg = angle_rad * 360.f / (2 * PI);
 
         sf::Vector2f middle = line.point_on_line_from_start (line.length / 2);
         sf::Vector2f middle_breakpoint = rotate_point_around_anchorpoint(
-            middle - sf::Vector2f{0.f, new_line_length * scaling}, 
+            middle - sf::Vector2f{0.f, new_height}, 
             middle, 
             angle_deg
         );
@@ -28,25 +29,25 @@ std::vector<Line> koch::iterate(const std::vector<Line>& prev_lines, float scali
         Line left_str(
             line.start,
             l_breakpoint,
-            new_line_length
+            line.length - new_width
         );
 
         Line right_str(
             r_breakpoint,
             line.end,
-            line.length / 3
+            line.length - new_width
         );
 
         Line left_diag(
             l_breakpoint,
             middle_breakpoint,
-            std::sqrt(std::pow(left_str.length * scaling, 2.f) + std::pow(line.length / 6, 2.f))
+            new_height
         );
 
         Line right_diag(
             middle_breakpoint,
             r_breakpoint,
-            std::sqrt(std::pow(left_str.length * scaling, 2.f) + std::pow(line.length / 6, 2.f))
+            new_height
         );
         next_lines.push_back(left_str);
         next_lines.push_back(right_str);
@@ -60,7 +61,7 @@ std::vector<Line> koch::simulate(const Config& config) {
     std::vector<Line> lines = config.initial_line_vector;
 
     for (int i = 0; i < config.iterations; i++) {
-        lines = koch::iterate(lines, config.scaling);
+        lines = koch::iterate(lines, config.line_model_width, config.line_model_height);
     }
 
     return lines;

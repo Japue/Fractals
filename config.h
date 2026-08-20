@@ -49,6 +49,9 @@ struct Config {
     InitialLines initial_line_input;
     std::vector<Line> initial_line_vector;
 
+    float line_model_width = 0.5;
+    float line_model_height = 0.5;
+
 
     Config(std::string toml_file_name, sf::Window& window) {
         try {
@@ -66,8 +69,12 @@ struct Config {
             num_sys = tbl["num_sys"].value_or(num_sys);
 
             //line-based params
-            initial_line_input = initial_line_conv(tbl["premade_preset"].value_or("one line"));
+            initial_line_input = initial_line_conv(tbl["base_preset"].value_or("one line"));
             initial_line_vector = line_input(initial_line_input, tbl, window_height);
+
+            line_model_width = tbl["line_model_width"].value_or(line_model_width);
+            line_model_height = tbl["line_model_height"].value_or(line_model_height);
+
         } catch (const toml::parse_error& err) {
             std::cerr << "Parsing failed:\n" << err << "\n";
         }

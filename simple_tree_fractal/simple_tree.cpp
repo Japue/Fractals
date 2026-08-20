@@ -2,7 +2,7 @@
 #include "../base_structs.h"
 #include "../config.h"
 
-std::vector<Line> simple_tree::iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines, float scaling) {
+std::vector<Line> simple_tree::iterate(const std::vector<Line>& begin_lines, std::vector<Line> &all_lines) {
     std::vector<Line> next_lines = {};
 
     for (const Line line : begin_lines) {
@@ -12,7 +12,7 @@ std::vector<Line> simple_tree::iterate(const std::vector<Line>& begin_lines, std
             line.length);
         all_lines.push_back(hor_line);
 
-        float new_length = hor_line.length * scaling;
+        float new_length = hor_line.length * 0.5f;
 
         Line l_line(
             hor_line.start,
@@ -37,7 +37,7 @@ std::vector<Line> simple_tree::simulate(const Config& config) {
     std::vector<Line> start_lines = all_lines;
 
     for (int i = 0; i < config.iterations; i++) {
-        start_lines = iterate(start_lines, all_lines, config.scaling);
+        start_lines = iterate(start_lines, all_lines);
     }
 
     return all_lines;
