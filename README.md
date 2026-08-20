@@ -79,8 +79,11 @@ If you're using "custom" you have to input something like this in initial_lines:
 
 `
 [
+
     [[-150, 0], [150, 0]],
+
     [[150, 0], [-150, 0]]
+    
 ]
 `
 
