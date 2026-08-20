@@ -77,10 +77,12 @@ Here are the possible options for **base_preset** listed:
 
 If you're using "custom" you have to input something like this in initial_lines:
 
-`[
+```
+[
     [[-150, 0], [150, 0]],
     [[150, 0], [-150, 0]]
-]`
+]
+```
 
 This will generate one line with start point (-150, 0) and end_point (150, 0), and one line with start point (150, 0) and end point (-150, 0). Now a few comments:
 
