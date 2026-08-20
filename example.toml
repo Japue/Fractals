@@ -1,13 +1,20 @@
 #general params
 fractal_type = "simple tree"
-iterations = 2
+iterations = 1
+
+#simple fractals
 scaling = 0.5
 
 #num_sys params
 num_sys = 3
 
 #line-based params
-premade_preset = "one line"
-initial_lines = [
-    [[-150, 0], [150, 0]],
+base_preset = "one line"
+custom_lines = [
+    [[300, 200], [-300, 200]],
+    [[-300, 200], [0, -100]],
+    [[0, -100], [300, 200]]
 ]
+
+line_model_width = 0.66
+line_model_height = 0.33
