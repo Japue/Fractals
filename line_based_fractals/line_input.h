@@ -49,7 +49,7 @@ inline std::vector<Line> line_input(InitialLines initial_line_input, toml::table
     std::vector<Line> initial_line_vector = {};
     switch (initial_line_input) {
         case InitialLines::custom: {
-            toml::array* arr = tbl["initial_lines"].as_array();
+            toml::array* arr = tbl["custom_lines"].as_array();
             for (auto&& line : *arr) {
                 toml::array* points_arr = line.as_array();
                 toml::array* start_arr = (*points_arr)[0].as_array();
