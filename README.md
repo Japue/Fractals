@@ -93,7 +93,7 @@ This will generate one line with start point (-150, 0) and end_point (150, 0), a
 
 #### Koch Patterns
 
-These have a triangle as model, the width and height of the triangle will be decided by **line_model_width** and **line_model_height** by multiplying the length of the line with these parameters you get the size of the triangle.
+These have a triangle as model, the width and height of the triangle will be decided by **line_model_width** and **line_model_height** by multiplying the length of the line with these parameters you get the size of the triangle. These parameters are factors, not absolute values.
 
 ![picture of model]()
 
