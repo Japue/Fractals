@@ -93,9 +93,9 @@ This will generate one line with start point (-150, 0) and end_point (150, 0), a
 
 #### Koch Patterns
 
-These have a triangle as model, the width and height of the triangle will be decided by **line_model_width** and **line_model_height** by multiplying the length of the line with these parameters you get the size of the triangle. These parameters are factors, not absolute values.
+These have a triangle as model, the width and height of the triangle will be decided by **line_model_width** and **line_model_height**. The width is a relative positition so 0.5 will put both points in the middle of the line, 1 will put them at the exact ends of the line. For the height it puts the top point above the middle a distance of the height_factor times the length of the line.
 
-![picture of model]()
+![picture of model](img/koch.png)
 
 fractal_type = "koch"
 other parameters:

@@ -13,8 +13,8 @@ std::vector<Line> koch::iterate(const std::vector<Line>& prev_lines, float width
     for (const Line& line : prev_lines) {
         float new_width = line.length * width_factor;
         float new_height = line.length * height_factor;
-        sf::Vector2f l_breakpoint = line.point_on_line_from_start(new_width);
-        sf::Vector2f r_breakpoint = line.point_on_line_from_start(line.length - new_width);
+        sf::Vector2f l_breakpoint = line.point_on_line_from_start(line.length - new_width);
+        sf::Vector2f r_breakpoint = line.point_on_line_from_start(new_width);
 
         float angle_rad = std::atan2(line.end.y - line.start.y, line.end.x - line.start.x);
         float angle_deg = angle_rad * 360.f / (2 * PI);
@@ -29,25 +29,25 @@ std::vector<Line> koch::iterate(const std::vector<Line>& prev_lines, float width
         Line left_str(
             line.start,
             l_breakpoint,
-            new_width
+            line.length - new_width
         );
 
         Line right_str(
             r_breakpoint,
             line.end,
-            new_width
+            line.length - new_width
         );
 
         Line left_diag(
             l_breakpoint,
             middle_breakpoint,
-            new_width
+            new_height
         );
 
         Line right_diag(
             middle_breakpoint,
             r_breakpoint,
-            new_width
+            new_height
         );
         next_lines.push_back(left_str);
         next_lines.push_back(right_str);
