@@ -15,6 +15,7 @@ enum class InitialLines {
     rhombus,
     hexagon,
     octagon,
+    reverse_octagon,
     none
 };
 
@@ -41,6 +42,8 @@ inline InitialLines initial_line_conv(std::string_view str) {
         return InitialLines::hexagon;
     } else if (str == "octagon") {
         return InitialLines::octagon;
+    } else if (str == "reverse octagon") {
+        return InitialLines::reverse_octagon;
     }
     return InitialLines::none;
 }
@@ -206,6 +209,28 @@ inline std::vector<Line> line_input(InitialLines initial_line_input, toml::table
             Line bottom_left({-400.f, x}, {-x, 400.f}, l);
             Line left({-x, 400.f}, {-x, -400.f}, l);
             Line left_top({-x, -400.f}, {-400.f, -x}, l);
+            initial_line_vector.push_back(top);
+            initial_line_vector.push_back(top_right);
+            initial_line_vector.push_back(right);
+            initial_line_vector.push_back(right_bottom);
+            initial_line_vector.push_back(bottom);
+            initial_line_vector.push_back(bottom_left);
+            initial_line_vector.push_back(left);
+            initial_line_vector.push_back(left_top);
+            break;
+        }
+
+        case InitialLines::reverse_octagon: {
+            float l = 800.f;
+            float x = (l / std::sqrt(2.f)) + (l / 2.f);
+            Line top({400.f, -x}, {-400.f, -x}, l);
+            Line top_right({x, -400.f}, {400.f, -x}, l);
+            Line right({x, 400.f}, {x, -400.f}, l);
+            Line right_bottom({400.f, x}, {x, 400.f}, l);
+            Line bottom({-400.f, x}, {400.f, x}, l);
+            Line bottom_left({-x, 400.f}, {-400.f, x}, l);
+            Line left({-x, -400.f}, {-x, 400.f}, l);
+            Line left_top({-400.f, -x}, {-x, -400.f}, l);
             initial_line_vector.push_back(top);
             initial_line_vector.push_back(top_right);
             initial_line_vector.push_back(right);
