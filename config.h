@@ -16,6 +16,7 @@ enum class FractalType {
     hfrac,
     num_sys,
     koch,
+    mink,
     none
 };
 
@@ -28,6 +29,8 @@ inline FractalType fractal_type_conv(std::string_view str) {
         return FractalType::num_sys;
     } else if (str == "koch") {
         return FractalType::koch;
+    } else if (str == "minkowski") {
+        return FractalType::mink;
     }
     return FractalType::none;
 }
