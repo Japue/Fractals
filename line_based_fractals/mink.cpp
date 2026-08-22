@@ -57,7 +57,7 @@ std::vector<Line> mink::iterate(const std::vector<Line>& prev_lines, float width
         );
 
         Line left_top_str(
-            l_breakpoint,
+            left_top,
             middle_top,
             new_width / 2.f
         );
