@@ -13,8 +13,10 @@ std::vector<Line> mink::iterate(const std::vector<Line>& prev_lines, float width
     for (const Line& line : prev_lines) {
         float new_width = line.length * width_factor;
         float new_height = line.length * height_factor;
-        sf::Vector2f l_breakpoint = line.point_on_line_from_start(line.length - new_width);
-        sf::Vector2f r_breakpoint = line.point_on_line_from_start(new_width);
+        float left_str_length = (line.length - new_width) / 2.f;
+
+        sf::Vector2f l_breakpoint = line.point_on_line_from_start(left_str_length);
+        sf::Vector2f r_breakpoint = line.point_on_line_from_start(line.length - left_str_length);
 
         float angle_rad = std::atan2(line.end.y - line.start.y, line.end.x - line.start.x);
         float angle_deg = angle_rad * 360.f / (2 * PI);
@@ -47,7 +49,7 @@ std::vector<Line> mink::iterate(const std::vector<Line>& prev_lines, float width
         Line left_str(
             line.start,
             l_breakpoint,
-            line.length - new_width
+            left_str_length
         );
 
         Line left_up(
@@ -59,7 +61,7 @@ std::vector<Line> mink::iterate(const std::vector<Line>& prev_lines, float width
         Line left_top_str(
             left_top,
             middle_top,
-            new_width / 2.f
+            line.length / 2.f - left_str_length
         );
 
         Line vert(
@@ -71,7 +73,7 @@ std::vector<Line> mink::iterate(const std::vector<Line>& prev_lines, float width
         Line right_bottom_str(
             middle_bottom,
             right_bottom,
-            new_width / 2.f
+            line.length / 2.f - left_str_length
         );
 
         Line right_down(
@@ -83,7 +85,7 @@ std::vector<Line> mink::iterate(const std::vector<Line>& prev_lines, float width
         Line right_str(
             r_breakpoint,
             line.end,
-            line.length - new_width
+            left_str_length
         );
 
         next_lines.push_back(left_str);
