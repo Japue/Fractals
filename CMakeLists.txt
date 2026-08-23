@@ -35,6 +35,7 @@ h_fractal/h_fractal.cpp
 num_sys_fractal/num_sys_fractal.cpp
 line_based_fractals/koch_fractal.cpp
 line_based_fractals/mink.cpp
+line_based_fractals/lightning.cpp
 )
 
 target_compile_definitions(${TARGET} PRIVATE _USE_MATH_DEFINES)
