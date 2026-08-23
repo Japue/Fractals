@@ -51,6 +51,14 @@ int main(){
             break;
     }
 
+    //make the vertices to be drawn
+    std::vector<sf::Vertex> vertices;
+    vertices.reserve(draw_lines.size() * 2);
+    for (const Line& line : draw_lines) {
+        vertices.push_back(sf::Vertex{line.start});
+        vertices.push_back(sf::Vertex{line.end});
+    }
+
     //gameloop
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
@@ -105,16 +113,9 @@ int main(){
         window.setView(view);
 
         //drawing
-        for (const Line& line : draw_lines) {
-            std::array line_points = {
-                sf::Vertex{line.start},
-                sf::Vertex{line.end}};
-
-            window.draw(line_points.data(), line_points.size(),
-                        sf::PrimitiveType::Lines);
-        }
+        window.draw(vertices.data(), vertices.size(), sf::PrimitiveType::Lines);
         //
 
-            window.display();
+        window.display();
     }
 }
