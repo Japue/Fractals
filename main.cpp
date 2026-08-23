@@ -10,6 +10,7 @@
 #include "h_fractal/h_fractal.h"
 #include "num_sys_fractal/num_sys_fractal.h"
 #include "line_based_fractals/koch_fractal.h"
+#include "line_based_fractals/mink.h"
 
 int main(){
     //window setup
@@ -39,6 +40,10 @@ int main(){
 
         case FractalType::koch:
             draw_lines = koch::simulate(config);
+            break;
+
+        case FractalType::mink:
+            draw_lines = mink::simulate(config);
             break;
 
         case FractalType::none:

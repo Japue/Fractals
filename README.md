@@ -90,13 +90,24 @@ This will generate one line with start point (-150, 0) and end_point (150, 0), a
 2. The order of the lines doesn't matter
 3. The order of the points DOES matter, this is because the model of the pattern always works from start point to end point, this will make more sense when actually seeing a model.
 
-### Koch Patterns
+### Koch Model
 
-These have a triangle as model, the width and height of the triangle will be decided by **line_model_width** and **line_model_height**. The width is a relative positition so 0.5 will put both points in the middle of the line, 1 will put them at the exact ends of the line. For the height it puts the top point above the middle a distance of the height_factor times the length of the line.
+These have a triangle as model, the width and height of the triangle will be decided by **line_model_width** and **line_model_height**. 
 
-![picture of model](img/koch.png)
+![picture of koch](img/koch.png)
 
 - fractal_type = "koch"
 - other parameters:
-    - **line_model_width**
-    - **line_model_height**
+    - **line_model_width**: the model will have a width equal to the base line length times **line_model_width**, 1 will put the points on the ends, zero will put both points in the middle
+    - **line_model_height**: the model will have a height equal to the base line length times **line_model_width** 1 will give the triangle a height equal to line length
+
+### Minkowski Model
+
+These have a staircase kind of model, the width and height of the triangle will be decided by **line_model_width** and **line_model_height**.
+
+/[picture of minkowski](img/mink.png)
+
+- fractal_type = "minkowski"
+- other parameters:
+    - **line_model_width**: this works the same as for the koch model
+    - **line_model_height**: this also works the same as for the koch model but an important difference is that the length goes from the base line to a height, so both the upper and lower straight part of the model will be offset like the triangle for the koch model
