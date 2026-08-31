@@ -105,9 +105,20 @@ These have a triangle as model, the width and height of the triangle will be dec
 
 These have a staircase kind of model, the width and height of the triangle will be decided by **line_model_width** and **line_model_height**.
 
-/[picture of minkowski](img/mink.png)
+![picture of minkowski](img/mink.png)
 
 - fractal_type = "minkowski"
 - other parameters:
     - **line_model_width**: this works the same as for the koch model
     - **line_model_height**: this also works the same as for the koch model but an important difference is that the length goes from the base line to a height, so both the upper and lower straight part of the model will be offset like the triangle for the koch model
+
+### Lightning Model
+
+These have a model that looks like a lightning bolt of which the measurements are again decided by **line_model_width** and **line_model_height**.
+
+![picture of lightning](img/lightning.png)
+
+- fractal_type = "lightning"
+- other parameters:
+    - **line_model_width**: this works the same as for the koch model but instead the projection of the points on the line is used
+    - **line_model_height**: this works the same as for the minkowski model
