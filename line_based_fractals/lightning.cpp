@@ -21,11 +21,11 @@ std::vector<Line> lightning::iterate(const std::vector<Line>& prev_lines, float 
         sf::Vector2f l_breakpoint_on_line = line.point_on_line_from_start(breakpoint_width);
         sf::Vector2f r_breakpoint_on_line = line.point_on_line_from_start(line.length - breakpoint_width);
 
-        sf::Vector2f l_breakpoint = l_breakpoint_on_line + sf::Vector2f{0.f, new_height};
-        sf::Vector2f r_breakpoint = r_breakpoint_on_line - sf::Vector2f{0.f, new_height};
+        sf::Vector2f l_breakpoint = l_breakpoint_on_line - sf::Vector2f{0.f, new_height};
+        sf::Vector2f r_breakpoint = r_breakpoint_on_line + sf::Vector2f{0.f, new_height};
 
-        rotate_point_around_anchorpoint(l_breakpoint, l_breakpoint_on_line, angle_deg);
-        rotate_point_around_anchorpoint(r_breakpoint, r_breakpoint_on_line, angle_deg);
+        l_breakpoint = rotate_point_around_anchorpoint(l_breakpoint, l_breakpoint_on_line, angle_deg);
+        r_breakpoint = rotate_point_around_anchorpoint(r_breakpoint, r_breakpoint_on_line, angle_deg);
 
         Line one(
             line.start, 
