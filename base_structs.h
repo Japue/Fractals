@@ -4,7 +4,7 @@
 
 #include <cmath>
 
-const float PI = static_cast<float>(M_PI);
+const float PI = 3.14159265358979323846f;
 
 struct Line{
     sf::Vector2f start;
