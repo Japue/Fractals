@@ -79,7 +79,7 @@ struct Config {
 
             //line-based params
             initial_line_input = initial_line_conv(tbl["base_preset"].value_or("one line"));
-            initial_line_vector = line_input(initial_line_input, tbl, window_height);
+            initial_line_vector = line_input(initial_line_input, tbl, window);
 
             line_model_width = tbl["line_model_width"].value_or(line_model_width);
             line_model_height = tbl["line_model_height"].value_or(line_model_height);

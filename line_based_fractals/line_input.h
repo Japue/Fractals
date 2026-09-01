@@ -48,7 +48,8 @@ inline InitialLines initial_line_conv(std::string_view str) {
     return InitialLines::none;
 }
 
-inline std::vector<Line> line_input(InitialLines initial_line_input, toml::table tbl, int window_height) {
+inline std::vector<Line> line_input(InitialLines initial_line_input, toml::table tbl, sf::Window& window) {
+    int window_height = window.getSize().y;
     std::vector<Line> initial_line_vector = {};
     switch (initial_line_input) {
         case InitialLines::custom: {
@@ -243,7 +244,8 @@ inline std::vector<Line> line_input(InitialLines initial_line_input, toml::table
         }
 
         case InitialLines::none: {
-            std::cerr << "Not a valid argument for premade_preset" << "\n";
+            std::cerr << "Not a valid argument for base_preset" << "\n";
+            window.close();
             break;
         }
     }
