@@ -37,7 +37,7 @@ std::vector<Line> antenna::iterate(const std::vector<Line>& prev_lines, float wi
         Line left(line.start, middle, line.length / 2.f);
         Line right(middle, line.end, line.length / 2.f);
         Line left_diag(middle, left_point, new_length);
-        Line right_diag(middle, right_point, new_length);
+        Line right_diag(right_point, middle, new_length);
 
         next_lines.push_back(left);
         next_lines.push_back(right);
