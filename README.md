@@ -122,3 +122,14 @@ These have a model that looks like a lightning bolt of which the measurements ar
 - other parameters:
     - **line_model_width**: this works the same as for the koch model but instead the projection of the points on the line is used
     - **line_model_height**: this works the same as for the minkowski model
+
+### Antenna Model
+
+These have a model that looks like an antenna of which the measurements are again decided by **line_model_width** and **line_model_height**.
+
+![picture of antenna](img/antenna.png)
+
+- fractal_type = "antenna"
+- other parameters:
+    - **line_model_width**: this works the same as for the koch model but instead the projection of the points on the line is used
+    - **line_model_height**: this works the same as for the minkowski model
