@@ -51,6 +51,10 @@ int main(){
             draw_lines = lightning::simulate(config);
             break;
 
+        case FractalType::antenna:
+            draw_lines = lightning::simulate(config);
+            break;
+
         case FractalType::none:
             std::cerr << "Not a valid argument for fractal_type" << "\n";
             break;
