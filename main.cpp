@@ -9,9 +9,7 @@
 #include "simple_tree_fractal/simple_tree.h"
 #include "h_fractal/h_fractal.h"
 #include "num_sys_fractal/num_sys_fractal.h"
-#include "line_based_fractals/koch_fractal.h"
-#include "line_based_fractals/mink.h"
-#include "line_based_fractals/lightning.h"
+#include "line_based_fractals/umbrella_header.h"
 
 int main(){
     //window setup
@@ -52,11 +50,12 @@ int main(){
             break;
 
         case FractalType::antenna:
-            draw_lines = lightning::simulate(config);
+            draw_lines = antenna::simulate(config);
             break;
 
         case FractalType::none:
             std::cerr << "Not a valid argument for fractal_type" << "\n";
+            window.close();
             break;
     }
 
