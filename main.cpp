@@ -53,6 +53,10 @@ int main(){
             draw_lines = antenna::simulate(config);
             break;
 
+        case FractalType::levy:
+            draw_lines = levy::simulate(config);
+            break;
+
         case FractalType::none:
             std::cerr << "Not a valid argument for fractal_type" << "\n";
             window.close();

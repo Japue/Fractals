@@ -19,6 +19,7 @@ enum class FractalType {
     mink,
     lightning,
     antenna,
+    levy,
     none
 };
 
@@ -37,6 +38,8 @@ inline FractalType fractal_type_conv(std::string_view str) {
         return FractalType::lightning;
     } else if (str == "antenna") {
         return FractalType::antenna;
+    } else if (str == "levy") {
+        return FractalType::levy;
     }
     return FractalType::none;
 }
