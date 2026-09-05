@@ -1,7 +1,8 @@
 #pragma once
 
-#include <vector>
 #include "../base_structs.h"
+#include <vector>
+
 
 enum class InitialLines {
     custom,
