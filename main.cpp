@@ -10,6 +10,7 @@
 #include "h_fractal/h_fractal.h"
 #include "num_sys_fractal/num_sys_fractal.h"
 #include "line_based_fractals/umbrella_header.h"
+#include "spirals/grow.h"
 
 int main(){
     //window setup
@@ -59,6 +60,10 @@ int main(){
 
         case FractalType::dragon:
             draw_lines = dragon::simulate(config);
+            break;
+
+        case FractalType::grow:
+            draw_lines = grow::simulate(config);
             break;
 
         case FractalType::none:

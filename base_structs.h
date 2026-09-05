@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <cmath>
+#include "spirals/spiral_structs.h"
 
 const float PI = 3.14159265358979323846f;
 

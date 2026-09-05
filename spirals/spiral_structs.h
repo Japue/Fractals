@@ -1,0 +1,20 @@
+#pragma once
+
+#include <SFML/Graphics.hpp>
+#include <cmath>
+
+struct PolarPoint {
+    float r;
+    float angle;
+
+    PolarPoint(float r_, float angle_) : r (r_), angle (angle_) {}
+
+    PolarPoint(sf::Vector2f sfpoint) : 
+        r (std::sqrt(std::pow(sfpoint.x, 2.f) + std::pow(sfpoint.y, 2.f))),
+        angle (std::atan2(-sfpoint.y, sfpoint.x))
+        {}
+
+    sf::Vector2f to_sfVector() const {
+        return sf::Vector2f{r * std::cos(angle), -r * std::sin(angle)};
+    }
+};
