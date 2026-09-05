@@ -57,6 +57,10 @@ int main(){
             draw_lines = levy::simulate(config);
             break;
 
+        case FractalType::dragon:
+            draw_lines = dragon::simulate(config);
+            break;
+
         case FractalType::none:
             std::cerr << "Not a valid argument for fractal_type" << "\n";
             window.close();
@@ -70,6 +74,8 @@ int main(){
         vertices.push_back(sf::Vertex{line.start});
         vertices.push_back(sf::Vertex{line.end});
     }
+
+    std::cout << "Lines made, starting gameloop";
 
     //gameloop
     while (window.isOpen()) {

@@ -20,6 +20,7 @@ enum class FractalType {
     lightning,
     antenna,
     levy,
+    dragon,
     none
 };
 
@@ -40,6 +41,8 @@ inline FractalType fractal_type_conv(std::string_view str) {
         return FractalType::antenna;
     } else if (str == "levy") {
         return FractalType::levy;
+    } else if (str == "dragon") {
+        return FractalType::dragon;
     }
     return FractalType::none;
 }
@@ -63,6 +66,7 @@ struct Config {
 
     float line_model_width = 0.5;
     float line_model_height = 0.5;
+    float rotation_angle = 90;
 
 
     Config(std::string toml_file_name, sf::Window& window) {
@@ -86,6 +90,7 @@ struct Config {
 
             line_model_width = tbl["line_model_width"].value_or(line_model_width);
             line_model_height = tbl["line_model_height"].value_or(line_model_height);
+            rotation_angle = tbl["rotation_angle"].value_or(rotation_angle);
 
         } catch (const toml::parse_error& err) {
             std::cerr << "Parsing failed:\n" << err << "\n";

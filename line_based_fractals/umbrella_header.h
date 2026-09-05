@@ -5,3 +5,4 @@
 #include "lightning.h"
 #include "antenna.h"
 #include "levy_fractal.h"
+#include "dragon.h"
