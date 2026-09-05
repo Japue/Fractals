@@ -1,6 +1,6 @@
 #general params
 fractal_type = "simple tree"
-iterations = 1
+iterations = 16
 
 #simple fractals
 scaling = 0.5
