@@ -1,9 +1,6 @@
 # Fractals
 A program that plots fractals using SFML and toml++ for the config
 
-# Setup
-Rename example.toml to config.toml, this is the file where you'll configure everything
-
 # Fractal Types
 
 First you have to select a fractal type, the possible options are divided into some categories:

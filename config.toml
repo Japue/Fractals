@@ -1,9 +1,9 @@
 #general params
-fractal_type = "simple tree"
-iterations = 16
+fractal_type = "dragon"
+iterations = 25
 
 #simple fractals
-scaling = 0.5
+scaling = 0.25
 
 #num_sys params
 num_sys = 3
@@ -16,6 +16,6 @@ custom_lines = [
     [[0, -100], [300, 200]]
 ]
 
-line_model_width = 0.66
-line_model_height = 0.33
+line_model_width = 0.5
+line_model_height = 0.5
 rotation_angle = 90
