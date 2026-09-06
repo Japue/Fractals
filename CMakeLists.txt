@@ -41,6 +41,7 @@ line_based_fractals/levy_fractal.cpp
 line_based_fractals/dragon.cpp
 spirals/grow.cpp
 spirals/line_based_spiral.cpp
+trees/pythagorean.cpp
 )
 
 target_compile_definitions(${TARGET} PRIVATE _USE_MATH_DEFINES)

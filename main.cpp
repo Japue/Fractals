@@ -12,6 +12,7 @@
 #include "line_based_fractals/umbrella_header.h"
 #include "spirals/grow.h"
 #include "spirals/line_based_spiral.h"
+#include "trees/pythagorean.h"
 
 int main(){
     //window setup
@@ -69,6 +70,10 @@ int main(){
 
         case FractalType::line_spiral:
             draw_lines = line_spiral::simulate(config);
+            break;
+
+        case FractalType::pyth:
+            draw_lines = pyth::simulate(config);
             break;
 
         case FractalType::none:

@@ -4,7 +4,6 @@
 #include <vector>
 #include "../base_structs.h"
 #include "../config.h"
-#include "spiral_structs.h"
 
 #include <vector>
 

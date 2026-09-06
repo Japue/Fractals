@@ -23,6 +23,7 @@ enum class FractalType {
     dragon,
     grow,
     line_spiral,
+    pyth,
     none
 };
 
@@ -49,6 +50,8 @@ inline FractalType fractal_type_conv(std::string_view str) {
         return FractalType::grow;
     } else if (str == "line spiral") {
         return FractalType::line_spiral;
+    } else if (str == "pyth") {
+        return FractalType::pyth;
     }
     return FractalType::none;
 }
