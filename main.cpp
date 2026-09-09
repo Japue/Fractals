@@ -34,6 +34,7 @@ const std::unordered_map<std::string, SimulateFn> simulate_table = {
     {"pyth", [](const Config& c) { return pyth::simulate(c); }},
 };
 
+
 int main(){
     //window setup
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Tree Fractal");

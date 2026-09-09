@@ -11,58 +11,12 @@
 #include "base_structs.h"
 #include "line_based_fractals/line_input.h"
 
-enum class FractalType {
-    simple_tree,
-    hfrac,
-    num_sys,
-    koch,
-    mink,
-    lightning,
-    antenna,
-    levy,
-    dragon,
-    grow,
-    line_spiral,
-    pyth,
-    none
-};
-
-inline FractalType fractal_type_conv(std::string_view str) {
-    if (str == "simple tree") {
-        return FractalType::simple_tree;
-    } else if (str == "h fractal") {
-        return FractalType::hfrac;
-    } else if (str == "numeral system") {
-        return FractalType::num_sys;
-    } else if (str == "koch") {
-        return FractalType::koch;
-    } else if (str == "minkowski") {
-        return FractalType::mink;
-    } else if (str == "lightning") {
-        return FractalType::lightning;
-    } else if (str == "antenna") {
-        return FractalType::antenna;
-    } else if (str == "levy") {
-        return FractalType::levy;
-    } else if (str == "dragon") {
-        return FractalType::dragon;
-    } else if (str == "grow") {
-        return FractalType::grow;
-    } else if (str == "line spiral") {
-        return FractalType::line_spiral;
-    } else if (str == "pyth") {
-        return FractalType::pyth;
-    }
-    return FractalType::none;
-}
-
-
 struct Config {
     //constants
     int window_height = 1080;
 
     //general params
-    FractalType fractal_type;
+    std::string fractal_type = "grow";
     int iterations = 2;
     float scaling = 0.5f;
 
@@ -90,7 +44,7 @@ struct Config {
             window_height = window.getSize().y;
 
             //general params
-            fractal_type = fractal_type_conv(tbl["fractal_type"].value_or("simple_tree"));
+            fractal_type = tbl["fractal_type"].value_or(fractal_type);
             iterations = tbl["iterations"].value_or(iterations);
             scaling = tbl["scaling"].value_or(scaling);
 
