@@ -1,5 +1,7 @@
 #include <vector>
 #include <iostream>
+#include <functional>
+#include <unordered_map>
 
 #include <SFML/Graphics.hpp>
 #include <toml++/toml.hpp>
@@ -14,6 +16,24 @@
 #include "spirals/line_based_spiral.h"
 #include "trees/pythagorean.h"
 
+
+using SimulateFn = std::function<std::vector<Line>(const Config&)>;
+
+const std::unordered_map<std::string, SimulateFn> simulate_table = {
+    {"simple tree", [](const Config& c) { return simple_tree::simulate(c); }},
+    {"hfrac", [](const Config& c) { return hfrac::simulate(c); }},
+    {"num_sys", [](const Config& c) { return num_sys::simulate(c); }},
+    {"koch", [](const Config& c) { return koch::simulate(c); }},
+    {"mink", [](const Config& c) { return mink::simulate(c); }},
+    {"lightning", [](const Config& c) { return lightning::simulate(c); }},
+    {"antenna", [](const Config& c) { return antenna::simulate(c); }},
+    {"levy", [](const Config& c) { return levy::simulate(c); }},
+    {"dragon", [](const Config& c) { return dragon::simulate(c); }},
+    {"grow", [](const Config& c) { return grow::simulate(c); }},
+    {"line_spiral", [](const Config& c) { return line_spiral::simulate(c); }},
+    {"pyth", [](const Config& c) { return pyth::simulate(c); }},
+};
+
 int main(){
     //window setup
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Tree Fractal");
@@ -25,62 +45,13 @@ int main(){
 
     //config and fractal generation accordingly
     const Config config("config.toml", window);
-    std::vector<Line> draw_lines;
-    
-    switch (config.fractal_type){
-        case FractalType::simple_tree:
-            draw_lines = simple_tree::simulate(config);
-            break;
-
-        case FractalType::hfrac:
-            draw_lines = hfrac::simulate(config);
-            break;
-
-        case FractalType::num_sys:
-            draw_lines = num_sys::simulate(config);
-            break;
-
-        case FractalType::koch:
-            draw_lines = koch::simulate(config);
-            break;
-
-        case FractalType::mink:
-            draw_lines = mink::simulate(config);
-            break;
-
-        case FractalType::lightning:
-            draw_lines = lightning::simulate(config);
-            break;
-
-        case FractalType::antenna:
-            draw_lines = antenna::simulate(config);
-            break;
-
-        case FractalType::levy:
-            draw_lines = levy::simulate(config);
-            break;
-
-        case FractalType::dragon:
-            draw_lines = dragon::simulate(config);
-            break;
-
-        case FractalType::grow:
-            draw_lines = grow::simulate(config);
-            break;
-
-        case FractalType::line_spiral:
-            draw_lines = line_spiral::simulate(config);
-            break;
-
-        case FractalType::pyth:
-            draw_lines = pyth::simulate(config);
-            break;
-
-        case FractalType::none:
-            std::cerr << "Not a valid argument for fractal_type" << "\n";
-            window.close();
-            break;
+    auto it = simulate_table.find(config.fractal_type);
+    if (it == simulate_table.end()) {
+        std::cerr << "Not a valid argument for fractal_type" << "\n";
+        window.close();
+        return 0;
     }
+    std::vector<Line> draw_lines = it->second(config);
 
     //make the vertices to be drawn
     std::vector<sf::Vertex> vertices;

@@ -1,6 +1,6 @@
 #general params
-fractal_type = "grow"
-iterations = 160000
+fractal_type = "pyth"
+iterations = 16
 
 #simple fractals
 scaling = 0.25
@@ -16,10 +16,10 @@ custom_lines = [
     [[0, -100], [300, 200]]
 ]
 
-line_model_width = 0.5
-line_model_height = 0.5
+line_model_width = 0.8
+line_model_height = 0.4
 rotation_angle = 90
 
 #spirals
-spiral_angle = 90
-spiral_scaling = 1.001
+spiral_angle = 1
+spiral_scaling = 1.02

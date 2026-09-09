@@ -42,6 +42,7 @@ line_based_fractals/dragon.cpp
 spirals/grow.cpp
 spirals/line_based_spiral.cpp
 trees/pythagorean.cpp
+trees/mandel_tree.cpp
 )
 
 target_compile_definitions(${TARGET} PRIVATE _USE_MATH_DEFINES)
