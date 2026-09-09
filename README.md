@@ -162,3 +162,5 @@ These have a model that looks like an antenna of which the measurements are agai
 - fractal_type = "pyth"
 - other parameters:
     - **base**
+    - **line_model_width**
+    - **line_model_height**
