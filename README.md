@@ -130,3 +130,35 @@ These have a model that looks like an antenna of which the measurements are agai
 - other parameters:
     - **line_model_width**: this works the same as for the koch model but instead the projection of the points on the line is used
     - **line_model_height**: this works the same as for the minkowski model
+
+### Dragon Model
+
+- fractal_type = "dragon"
+- other parameters:
+    - **rotation_angle**
+
+
+## Spirals
+
+### Grow Spiral
+
+- fractal_type = "grow"
+- other parameters:
+    - **spiral_angle**
+    - **spiral_scaling**
+
+### Line Based Spiral
+
+- fractal_type = "line spiral"
+- other parameters:
+    - **base**
+    - **spiral_angle**
+    - **spiral_scaling**
+
+## Trees
+
+### Pythagorean Tree
+
+- fractal_type = "pyth"
+- other parameters:
+    - **base**
