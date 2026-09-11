@@ -1,5 +1,5 @@
 #general params
-fractal_type = "pyth"
+fractal_type = "mandel tree"
 iterations = 16
 
 #simple fractals
@@ -9,15 +9,15 @@ scaling = 0.25
 num_sys = 3
 
 #line-based params
-base_preset = "one line"
+base_preset = "square"
 custom_lines = [
     [[300, 200], [-300, 200]],
     [[-300, 200], [0, -100]],
     [[0, -100], [300, 200]]
 ]
 
-line_model_width = 0.8
-line_model_height = 0.4
+line_model_width = 0.65
+line_model_height = 4
 rotation_angle = 90
 
 #spirals

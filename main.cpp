@@ -15,6 +15,7 @@
 #include "spirals/grow.h"
 #include "spirals/line_based_spiral.h"
 #include "trees/pythagorean.h"
+#include "trees/mandel_tree.h"
 
 
 using SimulateFn = std::function<std::vector<Line>(const Config&)>;
@@ -32,6 +33,7 @@ const std::unordered_map<std::string, SimulateFn> simulate_table = {
     {"grow", [](const Config& c) { return grow::simulate(c); }},
     {"line_spiral", [](const Config& c) { return line_spiral::simulate(c); }},
     {"pyth", [](const Config& c) { return pyth::simulate(c); }},
+    {"mandel tree", [](const Config& c) { return mandel::simulate(c); }}
 };
 
 

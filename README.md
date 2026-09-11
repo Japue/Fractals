@@ -164,3 +164,11 @@ These have a model that looks like an antenna of which the measurements are agai
     - **base**
     - **line_model_width**
     - **line_model_height**
+
+### Mandel Tree
+
+- fractal_type = "mandel tree"
+- other parameters:
+    - **base**
+    - **line_model_width**: 0.6
+    - **line_model_height**: 4
