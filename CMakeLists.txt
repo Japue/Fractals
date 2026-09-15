@@ -44,6 +44,7 @@ spirals/line_based_spiral.cpp
 trees/pythagorean.cpp
 trees/mandel_tree.cpp
 point_fractals/logistic.cpp
+point_fractals/julia.cpp
 )
 
 target_compile_definitions(${TARGET} PRIVATE _USE_MATH_DEFINES)

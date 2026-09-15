@@ -39,7 +39,8 @@ const std::unordered_map<std::string, LineSimulateFn> line_simulate_table = {
 };
 
 const std::unordered_map<std::string, PointSimulateFn> point_simulate_table = {
-    {"logistic", [](const Config& c) { return logistic::simulate(c); }}
+    {"logistic", [](const Config& c) { return logistic::simulate(c); }},
+    {"julia", [](const Config& c) { return julia::simulate(c); }}
 };
 
 
