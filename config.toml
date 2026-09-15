@@ -23,3 +23,14 @@ rotation_angle = 90
 #spirals
 spiral_angle = 1
 spiral_scaling = 1.02
+
+#point fractals
+trash_iterations = 100
+samples = 10
+x0 = 0.0001
+y0 = 0.0001
+
+#logistic
+stepsize = 0.0001
+a_start = 2
+a_end = 4

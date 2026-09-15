@@ -16,11 +16,13 @@
 #include "spirals/line_based_spiral.h"
 #include "trees/pythagorean.h"
 #include "trees/mandel_tree.h"
+#include "point_fractals/logistic.h"
 
 
-using SimulateFn = std::function<std::vector<Line>(const Config&)>;
+using LineSimulateFn = std::function<std::vector<Line>(const Config&)>;
+using PointSimulateFn = std::function<std::vector<sf::Vertex>(const Config&)>;
 
-const std::unordered_map<std::string, SimulateFn> simulate_table = {
+const std::unordered_map<std::string, LineSimulateFn> line_simulate_table = {
     {"simple tree", [](const Config& c) { return simple_tree::simulate(c); }},
     {"hfrac", [](const Config& c) { return hfrac::simulate(c); }},
     {"num_sys", [](const Config& c) { return num_sys::simulate(c); }},
@@ -36,6 +38,10 @@ const std::unordered_map<std::string, SimulateFn> simulate_table = {
     {"mandel tree", [](const Config& c) { return mandel::simulate(c); }}
 };
 
+const std::unordered_map<std::string, PointSimulateFn> point_simulate_table = {
+    {"logistic", [](const Config& c) { return logistic::simulate(c); }}
+};
+
 
 int main(){
     //window setup
@@ -48,23 +54,28 @@ int main(){
 
     //config and fractal generation accordingly
     const Config config("config.toml", window);
-    auto it = simulate_table.find(config.fractal_type);
-    if (it == simulate_table.end()) {
+
+    std::vector<sf::Vertex> vertices;
+    sf::PrimitiveType primitive_type;
+
+    if (auto it = line_simulate_table.find(config.fractal_type); it != line_simulate_table.end()){
+        std::vector<Line> draw_lines = it->second(config);
+        vertices.reserve(draw_lines.size() * 2);
+        for (const Line& line : draw_lines) {
+            vertices.push_back(sf::Vertex{line.start});
+            vertices.push_back(sf::Vertex{line.end});
+        }
+        primitive_type = sf::PrimitiveType::Lines;
+        std::cout << "Lines made, starting gameloop";
+    } else if (auto it2 = point_simulate_table.find(config.fractal_type); it2 != point_simulate_table.end()){
+        vertices = it2->second(config);
+        primitive_type = sf::PrimitiveType::Points;
+        std::cout << "Points made, starting gameloop\n";
+    } else {
         std::cerr << "Not a valid argument for fractal_type" << "\n";
         window.close();
         return 0;
     }
-    std::vector<Line> draw_lines = it->second(config);
-
-    //make the vertices to be drawn
-    std::vector<sf::Vertex> vertices;
-    vertices.reserve(draw_lines.size() * 2);
-    for (const Line& line : draw_lines) {
-        vertices.push_back(sf::Vertex{line.start});
-        vertices.push_back(sf::Vertex{line.end});
-    }
-
-    std::cout << "Lines made, starting gameloop";
 
     //gameloop
     while (window.isOpen()) {
@@ -120,7 +131,7 @@ int main(){
         window.setView(view);
 
         //drawing
-        window.draw(vertices.data(), vertices.size(), sf::PrimitiveType::Lines);
+        window.draw(vertices.data(), vertices.size(), primitive_type);
         //
 
         window.display();

@@ -35,6 +35,17 @@ struct Config {
     float spiral_scaling = 1.1f;
     float spiral_angle = 1.f;
 
+    //point fractals params
+    double stepsize = 0.0001;
+    int trash_iterations = 100;
+    int samples = 10;
+    double x0 = 0.001;
+    double y0 = 0.001;
+
+    //logistic params
+    double a_start = 2;
+    double a_end = 4;
+
 
     Config(std::string toml_file_name, sf::Window& window) {
         try {
@@ -62,6 +73,17 @@ struct Config {
             //spiral params
             spiral_scaling = tbl["spiral_scaling"].value_or(spiral_scaling);
             spiral_angle = tbl["spiral_angle"].value_or(spiral_angle);
+
+            //point fractals params
+            stepsize = tbl["stepsize"].value_or(stepsize);
+            trash_iterations = tbl["iterations"].value_or(iterations);
+            samples = tbl["samples"].value_or(samples);
+            x0 = tbl["x0"].value_or(x0);
+            y0 = tbl["y0"].value_or(y0);
+
+            //logistic params
+            a_start = tbl["a_start"].value_or(a_start);
+            a_end = tbl["a_end"].value_or(a_end);
 
         } catch (const toml::parse_error& err) {
             std::cerr << "Parsing failed:\n" << err << "\n";
