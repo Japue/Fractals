@@ -172,3 +172,30 @@ These have a model that looks like an antenna of which the measurements are agai
     - **base**
     - **line_model_width**: 0.6
     - **line_model_height**: 4
+
+## Point Fractals
+
+### Logistic Map
+
+- fractal_type = "logistic"
+- other parameters:
+    - **trash_iterations**: 400
+    - **samples**: 20
+    - **x0**: 0.001
+    - **stepsize**: 0.0001
+    - **a_start**: 2
+    - **a_end**: 4
+
+### Julia Fractal
+
+- fractal_type = "julia"
+- other parameters:
+    - **p_iterations**: 400
+    - **a**: 2
+    - **b**: 3
+    - **x_start**: -100
+    - **x_end**: 100
+    - **x_stepsize**: 0.001
+    - **y_start**: -100
+    - **y_end**: 100
+    - **y_stepsize**: 0.001

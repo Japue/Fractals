@@ -17,6 +17,7 @@
 #include "trees/pythagorean.h"
 #include "trees/mandel_tree.h"
 #include "point_fractals/logistic.h"
+#include "point_fractals/julia.h"
 
 
 using LineSimulateFn = std::function<std::vector<Line>(const Config&)>;

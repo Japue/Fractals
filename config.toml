@@ -1,5 +1,5 @@
 #general params
-fractal_type = "logistic"
+fractal_type = "julia"
 iterations = 16
 
 #simple fractals
@@ -24,13 +24,24 @@ rotation_angle = 90
 spiral_angle = 1
 spiral_scaling = 1.02
 
-#point fractals
-trash_iterations = 400
-samples = 20
-x0 = 0.001
-y0 = 0.001
-
 #logistic
-stepsize = 0.0001
-a_start = 2
-a_end = 4
+l_trash_iterations = 400
+l_samples = 20
+l_x0 = 0.001
+l_y0 = 0.001
+l_stepsize = 0.0001
+l_a_start = 2
+l_a_end = 4
+
+#point_fractals
+p_iterations = 300
+a = -0.7
+b = 0.25
+
+x_start = -2
+x_end = 2
+x_stepsize = 0.005
+
+y_start = -2
+y_end = 2
+y_stepsize = 0.005

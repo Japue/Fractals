@@ -35,16 +35,26 @@ struct Config {
     float spiral_scaling = 1.1f;
     float spiral_angle = 1.f;
 
-    //point fractals params
-    double stepsize = 0.0001;
-    int trash_iterations = 400;
-    int samples = 10;
-    double x0 = 0.001;
-    double y0 = 0.001;
-
     //logistic params
-    double a_start = 2;
-    double a_end = 4;
+    double l_stepsize = 0.0001;
+    int l_trash_iterations = 400;
+    int l_samples = 10;
+    double l_x0 = 0.001;
+    double l_a_start = 2;
+    double l_a_end = 4;
+
+    //point fractal params
+    int p_iterations = 400;
+    double a = 2;
+    double b = 3;
+
+    double x_start = -100;
+    double x_end = 100;
+    double x_stepsize = 0.001;
+
+    double y_start = -100;
+    double y_end = 100;
+    double y_stepsize = 0.001;
 
 
     Config(std::string toml_file_name, sf::Window& window) {
@@ -74,16 +84,26 @@ struct Config {
             spiral_scaling = tbl["spiral_scaling"].value_or(spiral_scaling);
             spiral_angle = tbl["spiral_angle"].value_or(spiral_angle);
 
-            //point fractals params
-            stepsize = tbl["stepsize"].value_or(stepsize);
-            trash_iterations = tbl["trash_iterations"].value_or(trash_iterations);
-            samples = tbl["samples"].value_or(samples);
-            x0 = tbl["x0"].value_or(x0);
-            y0 = tbl["y0"].value_or(y0);
-
             //logistic params
-            a_start = tbl["a_start"].value_or(a_start);
-            a_end = tbl["a_end"].value_or(a_end);
+            l_stepsize = tbl["l_stepsize"].value_or(l_stepsize);
+            l_trash_iterations = tbl["l_trash_iterations"].value_or(l_trash_iterations);
+            l_samples = tbl["l_samples"].value_or(l_samples);
+            l_x0 = tbl["l_x0"].value_or(l_x0);
+            l_a_start = tbl["l_a_start"].value_or(l_a_start);
+            l_a_end = tbl["l_a_end"].value_or(l_a_end);
+
+            //point fractal params
+            p_iterations = tbl["p_iterations"].value_or(p_iterations);
+            a = tbl["a"].value_or(a);
+            b = tbl["b"].value_or(b);
+
+            x_start = tbl["x_start"].value_or(x_start);
+            x_end = tbl["x_end"].value_or(x_end);
+            x_stepsize = tbl["x_stepsize"].value_or(x_stepsize);
+
+            y_start = tbl["y_start"].value_or(y_start);
+            y_end = tbl["y_end"].value_or(y_end);
+            y_stepsize = tbl["y_stepsize"].value_or(y_stepsize);
 
         } catch (const toml::parse_error& err) {
             std::cerr << "Parsing failed:\n" << err << "\n";
