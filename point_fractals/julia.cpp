@@ -32,9 +32,9 @@ void julia::iterate(const Config& c, double x0, double y0, std::vector<sf::Verte
         if (v < 0) v = 0;
         if (v > c.p_iterations) v = c.p_iterations;
     }
-    double t = v / c.p_iterations;
+    double band = std::fmod(v, c.band_colors) / c.band_colors;
 
-    point.color = sf::Color(static_cast<std::uint8_t>(255 * (1 - t)), 0, static_cast<std::uint8_t>(255 * t));
+    point.color = sf::Color(static_cast<std::uint8_t>(255 * (1 - band)), 0, static_cast<std::uint8_t>(255 * band));
     draw_points.push_back(point);
     std::cout << "Point made: (" << x0 << ", " << y0 << ")" << '\n';
 }

@@ -45,6 +45,7 @@ struct Config {
 
     //point fractal params
     int p_iterations = 400;
+    double band_colors = 60;
     double a = 2;
     double b = 3;
 
@@ -94,6 +95,7 @@ struct Config {
 
             //point fractal params
             p_iterations = tbl["p_iterations"].value_or(p_iterations);
+            band_colors = tbl["band_colors"].value_or(band_colors);
             a = tbl["a"].value_or(a);
             b = tbl["b"].value_or(b);
 

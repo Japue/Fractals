@@ -34,7 +34,8 @@ l_a_start = 2
 l_a_end = 4
 
 #point_fractals
-p_iterations = 300
+p_iterations = 100
+band_colors = 60
 a = -0.7
 b = 0.25
 
