@@ -15,7 +15,7 @@ void logistic::iterate(const Config& c, double a, std::vector<sf::Vertex>& draw_
     }
     for (int sample = 0; sample < c.samples; sample++) {
         xn = a * xn * (1 - xn);
-        draw_points.push_back(sf::Vertex{{static_cast<float>(xn), static_cast<float>(a)}});
+        draw_points.push_back(sf::Vertex{{static_cast<float>(a * 100), static_cast<float>(xn * 100)}});
     }
     std::cout << "Calculated: a = " << a << '\n';
 }

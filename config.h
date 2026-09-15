@@ -37,7 +37,7 @@ struct Config {
 
     //point fractals params
     double stepsize = 0.0001;
-    int trash_iterations = 100;
+    int trash_iterations = 400;
     int samples = 10;
     double x0 = 0.001;
     double y0 = 0.001;
@@ -76,7 +76,7 @@ struct Config {
 
             //point fractals params
             stepsize = tbl["stepsize"].value_or(stepsize);
-            trash_iterations = tbl["iterations"].value_or(iterations);
+            trash_iterations = tbl["trash_iterations"].value_or(trash_iterations);
             samples = tbl["samples"].value_or(samples);
             x0 = tbl["x0"].value_or(x0);
             y0 = tbl["y0"].value_or(y0);
